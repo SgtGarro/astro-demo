@@ -1,0 +1,19 @@
+---
+import logo from '@assets/svg/logo.svg'
+import logoWhite from '@assets/svg/logo-white.svg'
+import { Image } from 'astro:assets'
+
+interface Props {
+  type: 'normal' | 'white'
+}
+const { type } = Astro.props
+
+const currentLogo: { [key in Props['type']]: ImageMetadata } = {
+  normal: logo,
+  white: logoWhite,
+}
+---
+
+<a href="#">
+  <Image src={currentLogo[type]} alt="Logo" class="logo" />
+</a>

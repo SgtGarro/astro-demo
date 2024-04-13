@@ -1,0 +1,97 @@
+---
+import Card from '@components/Card.astro'
+import { Image } from 'astro:assets'
+
+const membersImage = await Astro.glob('/src/assets/team/*').then((files) =>
+  files.map((file) => file.default)
+)
+
+const members = [
+  {
+    name: 'Mauricio Oliveira',
+    role: 'Ingeniero de Software',
+    src: membersImage[0],
+  },
+  {
+    name: 'Marcelo Garro',
+    role: 'Ingeniero de Software',
+    src: membersImage[1],
+  },
+  {
+    name: 'Sebastian Méndez',
+    role: 'Ingeniero de Software',
+    src: membersImage[2],
+  },
+  {
+    name: 'Bruno Gonzales',
+    role: 'Ingeniero de Software',
+    src: membersImage[3],
+  },
+]
+---
+
+<section id="about-us" class="section">
+  <div class="container">
+    <h2 class="heading-2 about-us-title">Sobre nosotros</h2>
+    <p class="body-1 about-us-description">
+      Conoce al equipo encargado de este proyecto innovador
+    </p>
+    <div class="team-container">
+      {
+        members.map((member) => (
+          <Card>
+            <Image
+              width={180}
+              height={180}
+              src={member.src}
+              alt={member.name}
+              class="team-member-picture"
+            />
+            <p class="body-2 team-member-name">{member.name}</p>
+            <p class="body-2 team-member-role">{member.role}</p>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-us-title {
+    text-align: center;
+    color: var(--color-primary-500);
+    margin-bottom: 1.2rem;
+    text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  }
+  .about-us-description {
+    text-align: center;
+    text-wrap: pretty;
+    margin-bottom: 6.4rem;
+  }
+  .team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    gap: 3.6rem;
+  }
+  .team-member-picture {
+    display: block;
+    max-width: 18rem;
+    width: 80%;
+    aspect-ratio: 1 / 1;
+    height: initial;
+    margin-inline: auto;
+    margin-block: 1.2rem 2rem;
+  }
+  .team-member-name {
+    color: var(--color-title);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-align: center;
+  }
+  .team-member-role {
+    color: var(--color-text);
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+</style>

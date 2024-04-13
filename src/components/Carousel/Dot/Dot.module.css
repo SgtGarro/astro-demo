@@ -1,0 +1,14 @@
+.dot {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  outline: none;
+  border: none;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  background: var(--color-white);
+}
+.activeDot {
+  width: 3.6rem;
+  background: var(--color-secondary-500);
+}
